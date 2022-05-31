@@ -13,5 +13,12 @@ class Locomotive(models.Model):
 class Frequency(models.Model):
     frequency = models.CharField(max_length=5)
 
+    def create(self):
+        Frequency.replace()
+        super(Frequency, self).save()
+
+    def replace(self):
+        self.objects.all().delete()
+
     def __str__(self):
         return f'Frequency: {self.frequency}'
